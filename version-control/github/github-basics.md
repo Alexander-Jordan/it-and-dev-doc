@@ -3,7 +3,7 @@
 ```bash
 # first create a new GitHub repository (best practice is to match the name of the git repo)
 
-# add remote origin via SSH (need to setup)
+# add remote origin via SSH (need to setup SSH locally and on GitHub profile)
 git remote add origin git@github:<github-username>/<new-github-repository-name>.git
 
 # OR add remote origin via HTTPS (need to setup Personal Access Tokens)
