@@ -1,5 +1,12 @@
 [Good resource](https://git-scm.com/book/en/v2)
 
+#### git remote
+
+```bash
+# add the remote repository URL, and save it under a name ('origin' is mostly used)
+git remote add <name> <url>
+```
+
 #### git branch
 
 ```bash
@@ -22,8 +29,8 @@ git branch --no-merged
 # rename branch
 git branch --move <current-name> <new-name>
 git branch -M # same, but forcefully
-# establish a connection between the current local branch with the named branch on the remote ('origin')
-git branch -u origin <branch>
+# establish a connection between the current local branch with the named branch on the remote
+git branch -u <remote-name> <branch>
 # remove all local branches based on pattern
 git branch -D $(git branch --list | grep "<pattern>")
 ```
@@ -31,8 +38,12 @@ git branch -D $(git branch --list | grep "<pattern>")
 #### git checkout
 
 ```bash
-# create and go to branch
+# change to existing branch
+git checkout <branch>
+# create and change to new branch
 git checkout -b <branch>
+# checkout a specific commit
+git checkout <commit-hash>
 ```
 
 #### git pull
@@ -70,7 +81,7 @@ git status
 #### git add
 
 ```bash
-# add files to commit
+# add edited (and new) files to commit
 git add <files OR . (all)>
 ```
 
@@ -79,17 +90,19 @@ git add <files OR . (all)>
 ```bash
 # commit with a message
 git commit -m "<message>"
-# commit with a message & add any not added files to commit
+# commit with a message & add all edited (not new) files to the commit
 git commit -am "<message>"
 ```
 
 #### git push
 
 ```bash
-# save your commits to the remote version
+# establish the connection between the current local branch and named remote branch,
+# AND upload local commits from the current branch to the remote branch.
+# this is a shorthand for 'git branch -u <remote-name> <branch> && git push'
+git push -u <remote-name> <branch>
+# upload local commits from the current branch, to the remote branch it is connected to
 git push
-# upload local repo content to the remote repo ('origin'), naming the branch on the remote repo to upload it to
-git push -u origin <branch>
-# remove branch from remote (old name OR any)
-git push origin --delete <branch>
+# remove branch from remote
+git push <remote-name> --delete <branch>
 ```
