@@ -2,6 +2,7 @@
 
 ```bash
 # first create a new GitHub repository (best practice is to match the name of the git repo)
+# NOTE: don't automatically create any files to the GitHub repo
 
 # add the remote repository URL, and save it under a name ('origin' is mostly used)
 # either via SSH (need to setup SSH locally and on GitHub profile)
