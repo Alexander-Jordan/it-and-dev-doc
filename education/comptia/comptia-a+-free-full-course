@@ -1,0 +1,84 @@
+YouTube Video: https://www.youtube.com/watch?v=1CZXXNKAY5o
+
+# Module 1: Introduction & Overview of the Computer
+
+# Module 2: Motherboard (The spinal cord of the computer)
+
+## Lesson 1
+
+### Chipset (group of circuits or chips):
+	Intel vs AMD
+		Not same manufacturer (could be Samsung for example)
+		But the architecture is designed by Intel or AMD
+		Mostly the same thing, but good to know the difference
+	Northbridge (MCH: Memory Controller Hub)
+		1 of 2 main chips controlling communication on a motherboard
+		High data transfer devices (HIGH: NORTH)
+		High Speed Graphics
+		Memory (RAM)
+	Southbridge (ICH: I/O Controller Hub)
+		1 of 2 main chips controlling communication on a motherboard
+		Low data transfer devices (LOW: SOUTH)
+		Most input/output devices
+		Hard drives, USB, ethernet, etc
+	DMI (Direct Media Interface)
+		Connects Northbridge & Southbridge
+
+### Buses(one wire or a group of wires that transferes data):
+	Front-side Bus (Intel) & HyperTransport Bus (AMD)
+		The wire (bus) connecting the CPU to the Northbridge
+	Memory Bus
+		Same thing, the wire (bus) connectin memory (RAM) to the Northbridge
+	Expansion Bus
+		Expansions like addable memory or other stuff can be added
+
+### Lane (Two wires that enable sending & receiving data simultaneously)
+
+### Parallel vs Serial (sending multiple/on bits/bit of data at a time (stil one way))
+	Bits (b) vs Bytes (B = 8 bits)
+
+
+## Lesson 2
+
+### Expansion Buses
+	ISA (Industry Standard Architecture)
+		Old, and not that common anymore
+	PCI (Peripheral Component Interconnect)
+		One of the more common expansion buses
+		PCI
+			Bus Width: 32-bit
+			Freq: 33, 66 MHz
+			Max Data Rate: 133, 266 MB/s
+		PCIe (e: express. Most common & fastest)
+			Bus Width: Serial, 1-16 full duplex lanes
+			Freq: 2.5 (ver 1), 5 (ver 2), 8 (ver 3) GHz
+			Max Data Rate: 250, 500 MB/s, 1 GB/s per lane
+		PCIx (x: extended)
+		mini-PCI (more for laptops)
+	AGP (Accelerated Graphics Port)
+		Specificly made for graphics
+		PCIe replaced AGP
+			Bus Width: 32-bit
+			Freq: 1x, 2x, 4x, 8x 66MHz
+			Max Data Rate: 266, 533 MB/s, 1, 2 GB/s
+	AMR (Audio/Modem Riser) & CNR (Communication/Networking Riser)
+		CNR replaced AMR
+		Not so common because of PCIe replacing them
+		Specific for sound & modems / audio & networking
+	PCMCIA (Personal Computer Memory Card International Association)
+		Cards for laptops, plugged in
+
+### Storage Technology
+	PATA (Parallel AT Attachment) / IDE (Integrated Driv Electronics)
+		40-pin bus (molex)
+		Can hold 2 devices
+	SATA (Serial AT Attachment)
+		Faster
+		Can hold 1 device
+
+
+## Lesson 3
+
+### Input/Output Ports
+
+### Front Panel Connectors
