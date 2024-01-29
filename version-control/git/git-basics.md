@@ -28,7 +28,7 @@ git branch --merged
 git branch --no-merged
 # rename branch
 git branch --move <current-name> <new-name>
-git branch -M # same, but forcefully
+git branch -M <current-name> <new-name> # same, but forcefully
 # establish a connection between the current local branch with the named branch on the remote
 git branch -u <remote-name> <branch>
 # remove all local branches based on pattern
