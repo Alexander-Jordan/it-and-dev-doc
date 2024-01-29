@@ -78,6 +78,23 @@ git stash pop
 git status
 ```
 
+#### git diff
+
+```bash
+# view current content changes
+git diff
+# compare content changes between branches
+git diff <branch1>..<branch2>
+# OR
+git diff <branch1> <branch2>
+# comparing last commit on <branch2> and its common ancestor with <branch1>
+git diff <branch1>...<branch2>
+# compare affected files between branches
+git diff --name-only <branch1> <branch2>
+# comparing commits work as well
+git diff <commit-hash1> <commit-hash2>
+```
+
 #### git add
 
 ```bash
