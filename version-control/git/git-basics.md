@@ -118,6 +118,7 @@ git commit -am "<message>"
 # establish the connection between the current local branch and named remote branch,
 # AND upload local commits from the current branch to the remote branch.
 # this is a shorthand for 'git branch -u <remote-name> <branch> && git push'
+# NOTE: the first time establishing the connection to the remote, `git push -u` is needed
 git push -u <remote-name> <branch>
 # upload local commits from the current branch, to the remote branch it is connected to
 git push
