@@ -27,8 +27,8 @@
 <input type="text" bind:value="{jobTitle}">
 <textarea rows="3" bind:value="{description}"></textarea>
 <ContactCard
-	userName="{name}"
-	userImgSrc="{userImgSrc}"
-	jobTitle="{jobTitle}"
-	description="{description}"
+	{name}
+	{userImgSrc}
+	{jobTitle}
+	{description}
 />

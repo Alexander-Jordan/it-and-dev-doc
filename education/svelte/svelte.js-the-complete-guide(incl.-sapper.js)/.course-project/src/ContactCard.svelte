@@ -1,5 +1,5 @@
 <script>
-    export let userName;
+    export let name;
     export let userImgSrc;
     export let jobTitle;
     export let description;
@@ -62,10 +62,10 @@
 <div class="contact-card">
     <header>
         <div class="thumb">
-            <img src="{userImgSrc}" alt="{userName}">
+            <img src="{userImgSrc}" alt="{name}">
         </div>
         <div class="user-data">
-            <h1>{userName}</h1>
+            <h1>{name}</h1>
             <h2>{jobTitle}</h2>
         </div>
     </header>
