@@ -1,5 +1,8 @@
 <script>
     export let userName;
+    export let userImgSrc;
+    export let jobTitle;
+    export let description;
 </script>
 
 <style>
@@ -33,6 +36,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        padding-left: 1rem;
     }
 
     h1 {
@@ -58,14 +62,14 @@
 <div class="contact-card">
     <header>
         <div class="thumb">
-            <img src="" alt="">
+            <img src="{userImgSrc}" alt="{userName}">
         </div>
         <div class="user-data">
             <h1>{userName}</h1>
-            <h2>Job Title</h2>
+            <h2>{jobTitle}</h2>
         </div>
     </header>
     <div class="description">
-        <p>A short description</p>
+        <p>{description}</p>
     </div>
 </div>
