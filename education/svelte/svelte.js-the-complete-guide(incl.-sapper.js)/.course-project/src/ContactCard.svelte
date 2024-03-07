@@ -1,3 +1,7 @@
+<script>
+    export let userName;
+</script>
+
 <style>
     .contact-card {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
@@ -57,7 +61,7 @@
             <img src="" alt="">
         </div>
         <div class="user-data">
-            <h1>User Name</h1>
+            <h1>{userName}</h1>
             <h2>Job Title</h2>
         </div>
     </header>

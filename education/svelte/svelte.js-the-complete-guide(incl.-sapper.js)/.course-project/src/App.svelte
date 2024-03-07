@@ -20,4 +20,4 @@
 <h1>Hello {uppercaseName}, my age is {age}!</h1>
 <button on:click="{incrementAge}">Increment Age</button>
 <input type="text" bind:value="{name}">
-<ContactCard />
+<ContactCard userName="{name}" />
