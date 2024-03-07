@@ -58,7 +58,7 @@
         </div>
         <div class="user-data">
             <h1>User Name</h1>
-            <h1>Job Title</h1>
+            <h2>Job Title</h2>
         </div>
     </header>
     <div class="description">
