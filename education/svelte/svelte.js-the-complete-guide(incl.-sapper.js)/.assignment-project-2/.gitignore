@@ -1,0 +1,28 @@
+# Dependency directories
+node_modules/
+
+# IDE related
+.idea
+
+# Test coverage
+coverage
+*.lcov
+
+# Optional eslint cache
+.eslintcache
+
+# dotenv environment variables file
+.env
+.env.test
+
+# build output
+public/build/
+dist
+.vercel
+
+# OS-specific
+.DS_Store
+
+tmp
+package-lock.json
+.svelte-kit
