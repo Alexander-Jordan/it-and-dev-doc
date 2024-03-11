@@ -5,6 +5,11 @@
 	let title = "Developer";
 	let image = "https://avatars.githubusercontent.com/u/68730459";
 	let description = "This is a short description about me.";
+	let done = false;
+
+	function addContact() {
+		done = true;
+	}
 </script>
 
 <style>
@@ -31,6 +36,10 @@
 		<label for="desc">Description</label>
 		<textarea rows="3" bind:value={description} id="desc" />
 	</div>
-  </div>
+</div>
+
+<button on:click={addContact}>Add Contact Card</button>
   
-  <ContactCard userName={name} jobTitle={title} {description} userImage={image} />
+{#if done}
+	<ContactCard userName={name} jobTitle={title} {description} userImage={image} />
+{/if}
