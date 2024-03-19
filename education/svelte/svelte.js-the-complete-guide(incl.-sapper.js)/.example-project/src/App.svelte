@@ -1,6 +1,6 @@
 <script>
 	import Modal from './Modal.svelte';
-import Product from './Product.svelte'
+	import Product from './Product.svelte'
 
 	let products = [
 		{
@@ -9,6 +9,8 @@ import Product from './Product.svelte'
 			price: 9.99
 		}
 	]
+
+	let showModal = false;
 
 	function addToCart(event) {
 		console.log(event.detail);
@@ -27,8 +29,20 @@ import Product from './Product.svelte'
 	/>
 {/each}
 
-<Modal>
-	<h1 slot="header">Hi!</h1>
-	<p>This works!</p>
-	<button slot="footer">Confirm</button>
-</Modal>
+<button on:click={() => showModal = true}>Show Modal</button>
+
+{#if showModal}
+	<Modal
+		on:cancel={() => showModal = false}
+		on:close={() => showModal = false}
+	>
+		<h1 slot="header">Hi!</h1>
+		<p>This works!</p>
+		<button
+			slot="footer"
+			on:click={() => showModal = false}
+		>
+			Confirm
+		</button>
+	</Modal>
+{/if}
