@@ -1,4 +1,5 @@
 <script>
+  import { tick } from 'svelte';
 	import Modal from './Modal.svelte';
 	import Product from './Product.svelte'
 
@@ -10,6 +11,8 @@
 		}
 	]
 
+	let text = 'This is some dummy text!';
+
 	let showModal = false;
 	let closable = false;
 
@@ -19,6 +22,43 @@
 
 	function deleteProduct(event) {
 		console.log(event.detail);
+	}
+
+	function transform(event) {
+		// ignore if any other key is pressed than TAB
+		if (event.which !== 9) {
+			return;
+		}
+		event.preventDefault();
+
+		// get selection from textarea
+		const selectionStart = event.target.selectionStart;
+		const selectionEnd = event.target.selectionEnd;
+		const value = event.target.value;
+
+		// set the selected text to UPPERCASE
+		// this will update the DOM since `text` is used in the markup
+		// (triggering beforeUpdate & afterUpdate events)
+		text =
+			value.slice(0, selectionStart)
+			+ value.slice(selectionStart, selectionEnd).toUpperCase()
+			+ value.slice(selectionEnd);
+
+		// re-select the previous selection instead of jumping to the end
+		// THIS WILL NOT WORK
+		// will be run during the same task/tick, before the DOM update
+		// (then the selections was never updated)
+		event.target.selectionStart = selectionStart;
+		event.target.selectionEnd = selectionEnd;
+		
+		// THIS WILL WORK
+		// the `tick()` function let's us add a callback function
+		// which will be executed in the next task/tick
+		// (meaning that the DOM gets a chance to update first)
+		tick().then(() => {
+			event.target.selectionStart = selectionStart;
+			event.target.selectionEnd = selectionEnd;
+		});
 	}
 </script>
 
@@ -49,3 +89,5 @@
 		</button>
 	</Modal>
 {/if}
+
+<textarea rows="5" on:keydown={transform}>{text}</textarea>
