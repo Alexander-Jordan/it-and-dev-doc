@@ -13,6 +13,10 @@
 
     const dispatch = createEventDispatcher();
 
+    function cancelForm() {
+        dispatch('cancel');
+    }
+
     function submitForm() {
         dispatch('save', {
             title: title,
@@ -72,4 +76,8 @@
             on:input={(event) => description = event.target.value}
         />
     </form>
+    <div slot="footer">
+        <Button mode="outline" on:click={cancelForm}>Cancel</Button>
+        <Button on:click={submitForm}>Submit</Button>
+    </div>
 </Modal>
