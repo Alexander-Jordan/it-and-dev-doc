@@ -9,6 +9,7 @@
 	let agreed;
 	let favColor = 'red';
 	let favColor2 = ['green'];
+	let singleFavColor = 'red';
 
 	$: console.log(val);
 	$: console.log(value);
@@ -17,6 +18,7 @@
 	$: console.log(agreed);
 	$: console.log(favColor);
 	$: console.log(favColor2);
+	$: console.log(singleFavColor);
 
 	function setValue(event) {
 		val = event.target.value;
@@ -63,3 +65,9 @@
 	<input type="checkbox" name="color2" value="blue" bind:group={favColor2}>
 	Blue
 </label>
+
+<select bind:value={singleFavColor}>
+	<option value="red">Red</option>
+	<option value="green">Green</option>
+	<option value="blue">Blue</option>
+</select>
