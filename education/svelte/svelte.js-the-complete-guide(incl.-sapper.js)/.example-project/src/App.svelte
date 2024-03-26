@@ -11,6 +11,7 @@
 	let favColor2 = ['green'];
 	let singleFavColor = 'red';
 	let usernameInput;
+	let customInput;
 
 	$: console.log(val);
 	$: console.log(value);
@@ -20,6 +21,7 @@
 	$: console.log(favColor);
 	$: console.log(favColor2);
 	$: console.log(singleFavColor);
+	$: console.log(customInput);
 
 	function setValue(event) {
 		val = event.target.value;
@@ -34,7 +36,7 @@
 <input type="text" value={val} on:input={setValue}>
 <input type="text" bind:value={val}>
 <input type="text" bind:value>
-<CustomInput bind:val={val} />
+<CustomInput bind:val={val} bind:this={customInput} />
 <Toggle bind:chosenOption={selectedOption} />
 
 <input type="number" bind:value={price}>
