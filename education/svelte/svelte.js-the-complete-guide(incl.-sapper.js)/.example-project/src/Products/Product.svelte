@@ -8,16 +8,11 @@
   export let description;
 
   function addToCart() {
-    cartItems.update(ci => {
-      return [
-        ...ci,
-        {
-          id: id,
-          title: title,
-          price: price
-        }
-      ]
-    })
+    cartItems.addItem({
+        id: id,
+        title: title,
+        price: price
+    });
   }
 </script>
 
