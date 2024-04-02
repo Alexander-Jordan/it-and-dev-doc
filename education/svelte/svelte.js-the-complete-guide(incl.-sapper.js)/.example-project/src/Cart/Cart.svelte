@@ -1,12 +1,19 @@
 <script>
+  import { onDestroy } from 'svelte'
   import cartItems from './cart-store.js';
   import CartItem from "./CartItem.svelte";
 
   let items;
 
-  cartItems.subscribe(ci => {
+  const unsubscribe = cartItems.subscribe(ci => {
     items = ci;
   });
+
+  onDestroy(() => {
+    if (unsubscribe) {
+      unsubscribe();
+    }
+  })
 </script>
 
 <style>
