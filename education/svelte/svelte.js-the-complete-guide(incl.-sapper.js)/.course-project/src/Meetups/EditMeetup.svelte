@@ -6,12 +6,28 @@
     import Modal from "../UI/Modal.svelte";
     import { isEmpty, isValidEmail } from '../helpers/validation'
 
+    export let id = null;
+
     let title = '';
     let subtitle = '';
     let address = '';
     let email = '';
     let description = '';
     let imageUrl = '';
+
+    if (id) {
+        const unsubscribe = meetups.subscribe(items => {
+            const selectedMeetup = items.find(i => i.id === id);
+            title = selectedMeetup.title;
+            subtitle = selectedMeetup.subtitle;
+            address = selectedMeetup.address;
+            email = selectedMeetup.contactEmail;
+            description = selectedMeetup.description;
+            imageUrl = selectedMeetup.imageUrl;
+        })
+
+        unsubscribe();
+    }
 
     const dispatch = createEventDispatcher();
 
@@ -33,14 +49,20 @@
     }
 
     function submitForm() {
-        meetups.addMeetup({
+        const meetupData = {
             title: title,
             subtitle: subtitle,
             description: description,
             imageUrl: imageUrl,
             address: address,
             contactEmail: email
-        });
+        }
+
+        if (id) {
+            meetups.updateMeetup(id, meetupData)
+        } else {
+            meetups.addMeetup(meetupData);
+        }
         dispatch('save')
     }
 </script>
