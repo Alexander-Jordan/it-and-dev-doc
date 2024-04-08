@@ -7,12 +7,9 @@
 <button on:click={() => {showParagraph = !showParagraph}}>Toggle</button>
 
 {#if showParagraph}
-    <p 
-        transition:fly={{x: 300}}
-        on:introstart={() => console.log('Adding starts')}
-        on:introend={() => console.log('Adding ends')}
-        on:outrostart={() => console.log('Removing starts')}
-        on:outroend={() => console.log('Removing ends')}
+    <p
+        in:fade
+        out:fly={{x: 300}}
     >
         Can you see me?
     </p>
