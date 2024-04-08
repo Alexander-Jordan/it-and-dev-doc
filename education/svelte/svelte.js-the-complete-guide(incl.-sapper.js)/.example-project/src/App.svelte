@@ -1,9 +1,16 @@
 <script>
+    import { fade, fly, slide, scale } from 'svelte/transition';
+    import { cubicIn } from 'svelte/easing';
+
     let boxInput;
     let boxes = [];
 
     function addBox() {
         boxes = [...boxes, boxInput.value]
+    }
+
+    function discard(value) {
+        boxes = boxes.filter(el => el !== value);
     }
 </script>
 
@@ -23,5 +30,18 @@
 <button on:click={addBox}>Add</button>
 
 {#each boxes as box (box)}
-    <div>{box}</div>
+    <div
+        transition:fly={{
+            delay: 0,
+            duration: 400,
+            easing: cubicIn,
+            start: 0.5,
+            opacity: 0,
+            x: 300,
+            y: 0
+        }}
+        on:click={discard.bind(this, box)}
+    >
+        {box}
+    </div>
 {/each}
