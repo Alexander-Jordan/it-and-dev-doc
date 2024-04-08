@@ -92,7 +92,12 @@
         <p>{description}</p>
     </div>
     <footer>
-        <Button href="mailto:{email}">Contact</Button>
+        <Button
+            mode="outline"
+            on:click={() => dispatch('edit', id)}
+        >
+            Edit
+        </Button>
         <Button on:click={() => dispatch('showdetails', id)}>Show Details</Button>
         <Button
             mode="outline"
