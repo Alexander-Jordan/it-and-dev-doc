@@ -1,47 +1,19 @@
 <script>
     import { fade, fly, slide, scale } from 'svelte/transition';
-    import { cubicIn } from 'svelte/easing';
 
-    let boxInput;
-    let boxes = [];
-
-    function addBox() {
-        boxes = [...boxes, boxInput.value]
-    }
-
-    function discard(value) {
-        boxes = boxes.filter(el => el !== value);
-    }
+    let showParagraph = false;
 </script>
 
-<style>
-    div {
-        width: 10rem;
-        height: 10rem;
-        background: #ccc;
-        margin: 1rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-        border-radius: 5px;
-        padding: 1rem;
-    }
-</style>
+<button on:click={() => {showParagraph = !showParagraph}}>Toggle</button>
 
-<input type="text" bind:this={boxInput}>
-<button on:click={addBox}>Add</button>
-
-{#each boxes as box (box)}
-    <div
-        transition:fly={{
-            delay: 0,
-            duration: 400,
-            easing: cubicIn,
-            start: 0.5,
-            opacity: 0,
-            x: 300,
-            y: 0
-        }}
-        on:click={discard.bind(this, box)}
+{#if showParagraph}
+    <p 
+        transition:fly={{x: 300}}
+        on:introstart={() => console.log('Adding starts')}
+        on:introend={() => console.log('Adding ends')}
+        on:outrostart={() => console.log('Removing starts')}
+        on:outroend={() => console.log('Removing ends')}
     >
-        {box}
-    </div>
-{/each}
+        Can you see me?
+    </p>
+{/if}
