@@ -3,7 +3,7 @@
     let boxes = [];
 
     function addBox() {
-        boxed = [...boxes, boxInput.value]
+        boxes = [...boxes, boxInput.value]
     }
 </script>
 
