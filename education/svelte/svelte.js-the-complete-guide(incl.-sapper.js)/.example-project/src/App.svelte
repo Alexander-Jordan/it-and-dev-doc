@@ -1,7 +1,7 @@
 <script>
     import { onMount } from "svelte";
+    import hobbyStore from './hobby-store.js';
 
-    let hobbies = [];
     let hobbyInput;
     let isLoading = false;
 
@@ -16,7 +16,7 @@
             })
             .then(data => {
                 isLoading = false;
-                hobbies = Object.values(data);
+                hobbyStore.setHobbies(Object.values(data));
             })
             .catch(error => {
                 isLoading = false;
@@ -25,7 +25,7 @@
     });
 
     function addHobby() {
-        hobbies = [...hobbies, hobbyInput.value];
+        hobbyStore.addHobby(hobbyInput.value);
 
         isLoading = true;
         fetch(
@@ -58,7 +58,7 @@
     <p>Loading...</p>
 {:else}
     <ul>
-        {#each hobbies as hobby}
+        {#each $hobbyStore as hobby}
             <li>{hobby}</li>
         {/each}
     </ul>
