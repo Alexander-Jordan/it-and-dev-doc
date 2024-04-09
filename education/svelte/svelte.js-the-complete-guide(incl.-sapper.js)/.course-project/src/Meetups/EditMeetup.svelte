@@ -61,7 +61,35 @@
         if (id) {
             meetups.updateMeetup(id, meetupData)
         } else {
-            meetups.addMeetup(meetupData);
+            fetch(
+                'https://svelte-project-5e789-default-rtdb.firebaseio.com/meetups.json',
+                {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        ...meetupData,
+                        isFavorite: false
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            )
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('An error occured, please try again!');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    meetups.addMeetup({
+                        ...meetupData,
+                        isFavorite: false,
+                        id: data.name
+                    });
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
         dispatch('save')
     }
