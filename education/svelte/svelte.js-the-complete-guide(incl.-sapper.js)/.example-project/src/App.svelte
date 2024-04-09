@@ -1,21 +1,28 @@
 <script>
+    import { onMount } from "svelte";
+
     let hobbies = [];
     let hobbyInput;
     let isLoading = false;
 
-    fetch('https://svelte-project-5e789-default-rtdb.firebaseio.com/hobbies.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed');
-            }
-            return response.json();
-        })
-        .then(data => {
-            hobbies = Object.values(data);
-        })
-        .catch(error => {
-            console.log(error);
-        });
+    onMount(() => {
+        isLoading = true;
+        fetch('https://svelte-project-5e789-default-rtdb.firebaseio.com/hobbies.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed');
+                }
+                return response.json();
+            })
+            .then(data => {
+                isLoading = false;
+                hobbies = Object.values(data);
+            })
+            .catch(error => {
+                isLoading = false;
+                console.log(error);
+            });
+    });
 
     function addHobby() {
         hobbies = [...hobbies, hobbyInput.value];
