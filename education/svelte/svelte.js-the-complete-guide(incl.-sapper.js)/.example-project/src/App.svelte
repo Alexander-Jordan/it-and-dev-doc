@@ -1,24 +1,29 @@
 <script>
     let hobbies = [];
     let hobbyInput;
+    let isLoading = false;
 
     function addHobby() {
         hobbies = [...hobbies, hobbyInput.value];
 
+        isLoading = true;
         fetch(
             'https://svelte-project-5e789-default-rtdb.firebaseio.com/hobbies.json',
             {
                 method: 'POST',
-                body: JSON.stringify(hobbies),
+                body: JSON.stringify(hobbyInput.value),
                 headers: {
                     'Content-Type': 'application/json'
                 }
             }
         ).then(response => {
+            isLoading = false;
             if (!response.ok) {
                 throw new Error('Failed');
             }
+            alert('Saved data!');
         }).catch(error => {
+            isLoading = false;
             console.log(error)
         });
     }
@@ -28,8 +33,13 @@
 <input type="text" id="hobby" bind:this={hobbyInput}>
 <button on:click={addHobby}>Add Hobby</button>
 
-<ul>
-    {#each hobbies as hobby}
-        <li>{hobby}</li>
-    {/each}
-</ul>
+{#if isLoading}
+    <p>Loading...</p>
+{:else}
+    <ul>
+        {#each hobbies as hobby}
+            <li>{hobby}</li>
+        {/each}
+    </ul>
+{/if}
+
