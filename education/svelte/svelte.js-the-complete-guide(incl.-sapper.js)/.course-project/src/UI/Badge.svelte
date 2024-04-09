@@ -1,3 +1,7 @@
+<script>
+    import { slide } from "svelte/transition";
+</script>
+
 <style>
     span {
         display: inline-block;
@@ -12,4 +16,4 @@
     }
 </style>
 
-<span><slot /></span>
+<span transition:slide><slot /></span>
