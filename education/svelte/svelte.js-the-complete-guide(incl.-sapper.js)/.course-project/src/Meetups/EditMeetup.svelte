@@ -59,7 +59,25 @@
         }
 
         if (id) {
-            meetups.updateMeetup(id, meetupData)
+            fetch(
+                `https://svelte-project-5e789-default-rtdb.firebaseio.com/meetups/${id}.json`,
+                {
+                    method: 'PATCH',
+                    body: JSON.stringify(meetupData),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            )
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('An error occurred, please try again!');
+                    }
+                    meetups.updateMeetup(id, meetupData)
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         } else {
             fetch(
                 'https://svelte-project-5e789-default-rtdb.firebaseio.com/meetups.json',
@@ -76,7 +94,7 @@
             )
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('An error occured, please try again!');
+                        throw new Error('An error occurred, please try again!');
                     }
                     return response.json();
                 })
