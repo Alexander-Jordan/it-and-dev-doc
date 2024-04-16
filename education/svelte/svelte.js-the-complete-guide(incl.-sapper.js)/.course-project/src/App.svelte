@@ -1,7 +1,6 @@
 <script>
     import meetups from './Meetups/meetups-store.js';
     import MeetupGrid from "./Meetups/MeetupGrid.svelte";
-    import Button from "./UI/Button.svelte";
     import Header from "./UI/Header.svelte";
     import EditMeetup from "./Meetups/EditMeetup.svelte";
     import MeetupDetail from './Meetups/MeetupDetail.svelte';
@@ -10,6 +9,27 @@
     let editedId;
     let page = 'overview';
     let pageData = {};
+
+    fetch('https://svelte-project-5e789-default-rtdb.firebaseio.com/meetups.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Fetching meetups failed, please try again later!');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const loadedMeetups = [];
+            for (const key in data) {
+                loadedMeetups.push({
+                    ...data[key],
+                    id: key
+                });
+            }
+            meetups.setMeetups(loadedMeetups);
+        })
+        .catch(error => {
+            console.log(error);
+        });
 
     function addMeetup(event) {
         editMode = null;
