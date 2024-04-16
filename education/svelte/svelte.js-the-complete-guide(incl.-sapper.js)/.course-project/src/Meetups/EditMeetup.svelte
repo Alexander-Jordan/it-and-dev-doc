@@ -73,7 +73,7 @@
                     if (!response.ok) {
                         throw new Error('An error occurred, please try again!');
                     }
-                    meetups.updateMeetup(id, meetupData)
+                    meetups.updateMeetup(id, meetupData);
                 })
                 .catch(error => {
                     console.log(error);
@@ -113,7 +113,21 @@
     }
 
     function deleteMeetup() {
-        meetups.removeMeetup(id)
+        fetch(
+            `https://svelte-project-5e789-default-rtdb.firebaseio.com/meetups/${id}.json`,
+            {
+                method: 'DELETE'
+            }
+        )
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('An error occurred, please try again!');
+                }
+                meetups.removeMeetup(id)
+            })
+            .catch(error => {
+                console.log(error);
+            });
         dispatch('save');
     }
 </script>

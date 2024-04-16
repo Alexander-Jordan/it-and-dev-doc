@@ -56,7 +56,6 @@
     }
 
     function startEdit(event) {
-        console.log('test');
         editMode = 'edit';
         editedId = event.detail;
     }
