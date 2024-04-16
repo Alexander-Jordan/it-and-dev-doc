@@ -1,27 +1,26 @@
 <script>
-    import FamilyNode from "./FamilyNode.svelte";
+    let y;
+    let currentTitle = 'My app';
 
-    let familyStructure = [
-        {
-            isParent: true,
-            name: 'Chris',
-            children: [
-                {
-                    isParent: true,
-                    name: 'Moe',
-                    children: [
-                        {
-                            isParent: false,
-                            name: 'Julie'
-                        }
-                    ]
-                }
-            ]
-        },
-        { isParent: false, name: 'Anna' }
-    ];
+    $: console.log(y);
+
+    function switchTitle() {
+        currentTitle = 'A New Title';
+    }
 </script>
 
-{#each familyStructure as familyMember}
-    <FamilyNode member={familyMember} />
-{/each}
+<style>
+    div {
+        height: 3000px;
+    }
+</style>
+
+<svelte:window bind:scrollY={y} />
+<svelte:body />
+<svelte:head>
+    <title>{currentTitle}</title>
+</svelte:head>
+
+<button on:click={switchTitle}>Switch Title</button>
+
+<div></div>
