@@ -4,13 +4,15 @@
     import Header from "./UI/Header.svelte";
     import EditMeetup from "./Meetups/EditMeetup.svelte";
     import MeetupDetail from './Meetups/MeetupDetail.svelte';
-  import LoadingSpinner from './UI/LoadingSpinner.svelte';
+    import LoadingSpinner from './UI/LoadingSpinner.svelte';
+    import Error from './UI/Error.svelte';
 
     let editMode;
     let editedId;
     let page = 'overview';
     let pageData = {};
     let isLoading = true;
+    let errorMessage;
 
     fetch('https://svelte-project-5e789-default-rtdb.firebaseio.com/meetups.json')
         .then(response => {
@@ -31,6 +33,7 @@
             isLoading = false;
         })
         .catch(error => {
+            errorMessage = error;
             console.log(error);
             isLoading = false;
         });
@@ -59,6 +62,10 @@
         editMode = 'edit';
         editedId = event.detail;
     }
+
+    function clearError() {
+        errorMessage = null;
+    }
 </script>
 
 <style>
@@ -66,6 +73,10 @@
         margin-top: 5rem;
     }
 </style>
+
+{#if errorMessage}
+    <Error message={errorMessage.message} on:cancel={clearError} />
+{/if}
 
 <Header />
 
