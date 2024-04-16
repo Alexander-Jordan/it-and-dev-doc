@@ -4,11 +4,13 @@
     import Header from "./UI/Header.svelte";
     import EditMeetup from "./Meetups/EditMeetup.svelte";
     import MeetupDetail from './Meetups/MeetupDetail.svelte';
+  import LoadingSpinner from './UI/LoadingSpinner.svelte';
 
     let editMode;
     let editedId;
     let page = 'overview';
     let pageData = {};
+    let isLoading = true;
 
     fetch('https://svelte-project-5e789-default-rtdb.firebaseio.com/meetups.json')
         .then(response => {
@@ -26,9 +28,11 @@
                 });
             }
             meetups.setMeetups(loadedMeetups);
+            isLoading = false;
         })
         .catch(error => {
             console.log(error);
+            isLoading = false;
         });
 
     function addMeetup(event) {
@@ -71,12 +75,16 @@
         {#if editMode === 'edit'}
             <EditMeetup id={editedId} on:save={addMeetup} on:cancel={cancelEdit} />
         {/if}
-        <MeetupGrid
-            meetups={$meetups}
-            on:showdetails={showDetails}
-            on:edit={startEdit}
-            on:add={() => {editMode = 'edit'}}
-        />
+        {#if isLoading}
+            <LoadingSpinner />
+        {:else}
+            <MeetupGrid
+                meetups={$meetups}
+                on:showdetails={showDetails}
+                on:edit={startEdit}
+                on:add={() => {editMode = 'edit'}}
+            />
+        {/if}
     {:else}
         <MeetupDetail id={pageData.id} on:close={closeDetails} />
     {/if}
