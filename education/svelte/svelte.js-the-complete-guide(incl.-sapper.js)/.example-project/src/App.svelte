@@ -1,20 +1,27 @@
 <script>
-    import Product from "./Product.svelte";
-    import CartItem from "./CartItem.svelte";
+    import FamilyNode from "./FamilyNode.svelte";
 
-    let showProduct = true;
-
-    function toggle() {
-        showProduct = !showProduct;
-    }
+    let familyStructure = [
+        {
+            isParent: true,
+            name: 'Chris',
+            children: [
+                {
+                    isParent: true,
+                    name: 'Moe',
+                    children: [
+                        {
+                            isParent: false,
+                            name: 'Julie'
+                        }
+                    ]
+                }
+            ]
+        },
+        { isParent: false, name: 'Anna' }
+    ];
 </script>
 
-<button on:click={toggle}>Toggle Display</button>
-
-<svelte:component this={showProduct ? Product : CartItem} title="Test Product" id="p1" />
-
-{#if showProduct}
-    <Product title="Test Product" id="p1" />
-{:else}
-    <CartItem title="Another Product" id="p2" />
-{/if}
+{#each familyStructure as familyMember}
+    <FamilyNode member={familyMember} />
+{/each}
