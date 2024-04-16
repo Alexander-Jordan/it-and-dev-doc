@@ -27,7 +27,7 @@
                     id: key
                 });
             }
-            meetups.setMeetups(loadedMeetups);
+            meetups.setMeetups(loadedMeetups.reverse());
             isLoading = false;
         })
         .catch(error => {
