@@ -1,5 +1,5 @@
 <script>
-    import { createEventDispatcher, onMount } from 'svelte';
+    import { onMount, onDestroy } from 'svelte';
     import { scale } from 'svelte/transition';
     import { flip } from 'svelte/animate';
     import meetups from '../meetups-store.js'
@@ -11,17 +11,24 @@
 
     export let data;
 
-    const dispatch = createEventDispatcher();
-
+    let loadedMeetups = [];
     let favoritesOnly = false;
     let editMode;
     let editedId;
     let isLoading;
+    let unsubscribe;
 
-    $: filteredMeetups = favoritesOnly ? data.loadedMeetups.filter(m => m.isFavorite) : data.loadedMeetups;
+    $: filteredMeetups = favoritesOnly ? loadedMeetups.filter(m => m.isFavorite) : loadedMeetups;
 
     onMount(() => {
+        unsubscribe = meetups.subscribe(items => (loadedMeetups = items));
         meetups.setMeetups(data.loadedMeetups);
+    })
+
+    onDestroy(() => {
+        if (unsubscribe) {
+            unsubscribe();
+        }
     })
 
     function setFilter(event) {
@@ -41,6 +48,10 @@
     function startEdit(event) {
         editMode = 'edit';
         editedId = event.detail;
+    }
+
+    function startAdd() {
+        editMode = 'edit'
     }
 </script>
 
@@ -82,7 +93,7 @@
     <section id="meetup-controls">
         <MeetupFilter on:select={setFilter} />
 
-        <Button on:click={() => dispatch('add')}>
+        <Button on:click={startAdd}>
             New Meetup
         </Button>
     </section>
@@ -103,7 +114,7 @@
                     email={meetup.contactEmail}
                     isFavorite={meetup.isFavorite}
                     on:showdetails
-                    on:edit
+                    on:edit={startEdit}
                 />
             </div>
         {/each}
