@@ -54,7 +54,7 @@
         <h1>{data.loadedMeetup.title}</h1>
         <h2>{data.loadedMeetup.subtitle} - {data.loadedMeetup.address}</h2>
         <p>{data.loadedMeetup.description}</p>
-        <Button href={data.loadedMeetup.contactEmail}>Contact</Button>
+        <Button href="mailto:{data.loadedMeetup.contactEmail}">Contact</Button>
         <Button
             mode="outline"
             href="/"
