@@ -1,5 +1,5 @@
 <script>
-    import { createEventDispatcher, onMount, onDestroy } from 'svelte';
+    import { createEventDispatcher, onMount } from 'svelte';
     import { scale } from 'svelte/transition';
     import { flip } from 'svelte/animate';
     import meetups from '../meetups-store.js'
@@ -9,7 +9,7 @@
     import EditMeetup from '../lib/components/Meetups/EditMeetup.svelte';
     import LoadingSpinner from '../lib/components/UI/LoadingSpinner.svelte';
 
-    let fetchedMeetups = [];
+    export let data;
 
     const dispatch = createEventDispatcher();
 
@@ -17,42 +17,11 @@
     let editMode;
     let editedId;
     let isLoading;
-    let unsubscribe;
 
-    $: filteredMeetups = favoritesOnly ? fetchedMeetups.filter(m => m.isFavorite) : fetchedMeetups;
+    $: filteredMeetups = favoritesOnly ? data.loadedMeetups.filter(m => m.isFavorite) : data.loadedMeetups;
 
     onMount(() => {
-        unsubscribe = meetups.subscribe(items => (fetchedMeetups = items));
-        isLoading = true;
-        fetch('https://svelte-project-5e789-default-rtdb.firebaseio.com/meetups.json')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Fetching meetups failed, please try again later!');
-                }
-                return response.json();
-            })
-            .then(data => {
-                const loadedMeetups = [];
-                for (const key in data) {
-                    loadedMeetups.push({
-                        ...data[key],
-                        id: key
-                    });
-                }
-                meetups.setMeetups(loadedMeetups.reverse());
-                isLoading = false;
-            })
-            .catch(error => {
-                errorMessage = error;
-                console.log(error);
-                isLoading = false;
-            });
-    })
-
-    onDestroy(() => {
-        if (unsubscribe) {
-            unsubscribe();
-        }
+        meetups.setMeetups(data.loadedMeetups);
     })
 
     function setFilter(event) {
