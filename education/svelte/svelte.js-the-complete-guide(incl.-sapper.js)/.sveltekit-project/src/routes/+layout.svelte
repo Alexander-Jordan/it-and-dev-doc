@@ -1,20 +1,14 @@
 <script>
-	import { page } from '$app/stores';
-	import Nav from '$lib/components/Nav.svelte';
+	import Header from '../lib/components/UI/Header.svelte'
 </script>
 
 <style>
 	main {
-		position: relative;
-		max-width: 56em;
-		background-color: white;
-		padding: 2em;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
+        margin-top: 5rem;
+    }
 </style>
 
-<Nav segment={$page.data.segment}/>
+<Header />
 
 <main>
 	<slot></slot>
