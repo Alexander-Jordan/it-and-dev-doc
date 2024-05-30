@@ -19,7 +19,7 @@ export function load() {
 					id: key
 				});
 			}
-			return { loadedMeetups }
+			return { loadedMeetups: loadedMeetups.reverse() }
 		})
 		.catch(error => {
 			error(500, {
