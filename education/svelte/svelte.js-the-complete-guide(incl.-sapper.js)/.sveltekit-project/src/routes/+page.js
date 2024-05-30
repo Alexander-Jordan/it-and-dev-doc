@@ -21,7 +21,7 @@ export function load() {
 			}
 			return { loadedMeetups: loadedMeetups.reverse() }
 		})
-		.catch(error => {
+		.catch(() => {
 			error(500, {
 				message: 'Could not fetch meetups'
 			});

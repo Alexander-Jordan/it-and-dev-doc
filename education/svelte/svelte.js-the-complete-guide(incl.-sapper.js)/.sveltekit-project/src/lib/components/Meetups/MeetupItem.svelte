@@ -116,7 +116,7 @@
         >
             Edit
         </Button>
-        <Button on:click={() => dispatch('showdetails', id)}>Show Details</Button>
+        <Button href="/meetups/{id}">Show Details</Button>
         <Button
             mode="outline"
             color={isFavorite ? null : 'success'}
