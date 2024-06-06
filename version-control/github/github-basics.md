@@ -14,6 +14,7 @@ git remote add origin https://github.com/<github-username>/<new-github-repositor
 git branch -M main
 
 # establish a connection between the current local branch with the named branch ('main') on the remote ('origin')
+# NOTE: the remote branch must exist (which in this flow it does)
 git branch -u origin main
 # upload local branch content to the remote repo branch
 git push
