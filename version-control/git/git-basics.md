@@ -12,28 +12,45 @@ git remote add <name> <url>
 ```bash
 # create new branch
 git branch <branch>
+for branch in <pattern>{from-value..to-value}; do git branch $branch; done; # create multiple branches instantly
 # delete branch
-git branch -d <branch>
+git branch [-d | --delete] <branch>
+git branch [-d | --delete] $(git branch -l <pattern>) # remove all local branches based on pattern
+git branch -D # shortcut for '--delete --force'
 # list branches
-git branch --list # only local branches
+git branch [-l | --list] <pattern>  # only local branches, with the option to filter with pattern
 git branch # if no flags added, it acts as if the --list flag was added
-git branch --all # both local and remote branches
-git branch --all | grep <keyword-to-match>
-# to see last commit on each branch
+git branch [-a | --all] # both local and remote branches
+git branch [-a | --all] | grep <pattern> # filter with 'grep'
+git branch [-la | --list --all] <pattern> # filter with '--list'
+# show last commit on each branch
 git branch -v
-# to see what remote branches the local branches points to
-git branch -vv 
+git branch -vv # include name of the remote branch
 # which branches are merged/not merged with the current branch
 git branch --merged
 git branch --no-merged
 # rename branch
-git branch -m <new-name> # rename current branch ('-m' or '--move')
+git branch [-m | --move] <new-name> # rename current branch
 git branch -m <current-name> <new-name> # rename specified current branch name
-git branch -M <current-name> <new-name> # same, but forcefully ('-M' is the same as '--move --force')
-# establish a connection between the current local branch with the named branch on the remote
-git branch -u <remote-name> <branch>
-# remove all local branches based on pattern
-git branch -D $(git branch --list | grep "<pattern>")
+git branch -M <current-name> <new-name> # shortcut for '--move --force'
+# establish a connection between the current local branch with the named branch on the remote.
+# this could be used when you want to change which remote branch to track.
+# NOTE: the remote branch needs to first exist on the remote.
+# to create the remote branch and establish the connection the first time, run:
+# 'git push -u <remote-name> <branch>'
+git branch [-u | --set-upstream-to] <remote-name></branch> <branch>
+```
+
+#### git switch
+
+```bash
+# change to existing branch
+git switch <branch>
+# create and change to new branch
+git switch [-c | --create] <branch> # shortcut for 'git branch <branch> && git switch <branch>'
+git switch [-C | --force-create] # shortcut for 'git branch -f <branch> && git switch <branch>'
+# change to a specific commit
+git switch <commit-hash>
 ```
 
 #### git checkout
@@ -99,17 +116,38 @@ git diff <commit-hash1> <commit-hash2>
 #### git add
 
 ```bash
-# add edited (and new) files to commit
-git add <files OR . (all)>
+# include new, edited, or deleted files to commit
+git add <files | . (all)>
+```
+
+#### git restore
+
+```bash
+# restore changed or deleted files
+git restore <files | . (all)>
 ```
 
 #### git commit
 
 ```bash
 # commit with a message
-git commit -m "<message>"
-# commit with a message & add all edited (not new) files to the commit
-git commit -am "<message>"
+git commit [-m | --message] "<message>"
+# commit with a message & include all edited or removed files (not new) to the commit
+git commit [-am | --all --message] "<message>"
+```
+
+#### git reset
+
+```bash
+# undo last commit (before pushing to remote)
+git reset
+```
+
+#### git log
+
+```bash
+# show commit logs
+git log
 ```
 
 #### git push
@@ -117,11 +155,16 @@ git commit -am "<message>"
 ```bash
 # establish the connection between the current local branch and named remote branch,
 # AND upload local commits from the current branch to the remote branch.
-# this is a shorthand for 'git branch -u <remote-name> <branch> && git push'
-# NOTE: the first time establishing the connection to the remote, `git push -u` is needed
 git push -u <remote-name> <branch>
 # upload local commits from the current branch, to the remote branch it is connected to
 git push
 # remove branch from remote
-git push <remote-name> --delete <branch>
+git push <remote-name> [-d | --delete] <branch>
+```
+
+#### git revert
+
+```bash
+# creates a new commit that is the opposite of an existing commit
+git revert <commit-hash>
 ```
