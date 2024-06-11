@@ -50,7 +50,7 @@ git switch <branch>
 git switch [-c | --create] <branch> # shortcut for 'git branch <branch> && git switch <branch>'
 git switch [-C | --force-create] # shortcut for 'git branch -f <branch> && git switch <branch>'
 # change to a specific commit
-git switch <commit-hash>
+git switch [-d | --detach] <commit-hash>
 ```
 
 #### git checkout
