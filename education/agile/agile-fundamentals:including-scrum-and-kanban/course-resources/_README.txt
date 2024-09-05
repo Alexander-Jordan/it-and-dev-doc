@@ -1,0 +1,3 @@
+This ZIP file contains all of the resources for the course. While these are also available for download as you work through the lectures, for convenience, we offer this alternatively be downloaded in one file.
+
+Note - This file may contain XML files. These files cannot simply be doube clicked to open. Instead, you need to go to www.draw.io and open the files from there. An instructional video with further details can be found here (4th video) - https://www.thebaguide.com/drawio
