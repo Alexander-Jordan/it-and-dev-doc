@@ -1,13 +1,19 @@
-[Good resource](https://git-scm.com/book/en/v2)
+# Git basics
 
-#### git remote
+## Resources
+
+- [Pro Git, the git book](https://git-scm.com/book/en/v2)
+
+## Commands
+
+### `git remote`
 
 ```bash
 # add the remote repository URL, and save it under a name ('origin' is mostly used)
 git remote add <name> <url>
 ```
 
-#### git branch
+### `git branch`
 
 ```bash
 # create new branch
@@ -41,7 +47,7 @@ git branch -M <current-name> <new-name> # shortcut for '--move --force'
 git branch [-u | --set-upstream-to] <remote-name></branch> <branch>
 ```
 
-#### git switch
+### `git switch`
 
 ```bash
 # change to existing branch
@@ -53,7 +59,7 @@ git switch [-C | --force-create] # shortcut for 'git branch -f <branch> && git s
 git switch [-d | --detach] <commit-hash>
 ```
 
-#### git checkout
+### `git checkout`
 
 ```bash
 # change to existing branch
@@ -64,7 +70,7 @@ git checkout -b <branch>
 git checkout <commit-hash>
 ```
 
-#### git pull
+### `git pull`
 
 ```bash
 # fetch latest version of current branch
@@ -73,14 +79,14 @@ git pull
 git pull --rebase
 ```
 
-#### git merge
+### `git merge`
 
 ```bash
 # merge current branch with given branch
 git merge <branch>
 ```
 
-#### git stash
+### `git stash`
 
 ```bash
 # temporarily set aside some changes made
@@ -89,14 +95,14 @@ git stash
 git stash pop
 ```
 
-#### git status
+### `git status`
 
 ```bash
 # display all new, edited and deleted files
 git status
 ```
 
-#### git diff
+### `git diff`
 
 ```bash
 # view current content changes
@@ -113,21 +119,21 @@ git diff --name-only <branch1> <branch2>
 git diff <commit-hash1> <commit-hash2>
 ```
 
-#### git add
+### `git add`
 
 ```bash
 # include new, edited, or deleted files to commit
 git add <files | . (all)>
 ```
 
-#### git restore
+### `git restore`
 
 ```bash
 # restore changed or deleted files
 git restore <files | . (all)>
 ```
 
-#### git commit
+### `git commit`
 
 ```bash
 # commit with a message
@@ -136,21 +142,21 @@ git commit [-m | --message] "<message>"
 git commit [-am | --all --message] "<message>"
 ```
 
-#### git reset
+### `git reset`
 
 ```bash
 # undo last commit (before pushing to remote)
 git reset
 ```
 
-#### git log
+### `git log`
 
 ```bash
 # show commit logs
 git log
 ```
 
-#### git push
+### `git push`
 
 ```bash
 # establish the connection between the current local branch and named remote branch,
@@ -162,7 +168,7 @@ git push
 git push <remote-name> [-d | --delete] <branch>
 ```
 
-#### git revert
+### `git revert`
 
 ```bash
 # creates a new commit that is the opposite of an existing commit

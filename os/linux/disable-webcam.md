@@ -1,4 +1,16 @@
-## Permanently Disable/Enable Webcam
+# Disable/Enable the webcam on Linux
+
+## Temporarily
+
+```bash
+# temporarily enable the webcam:
+sudo modprobe uvcvideo
+
+# temporarily disable the webcam:
+sudo modprobe -r uvcvideo
+```
+
+## Permanently
 
 ```bash
 # open /etc/modprobe.d/blacklist.conf
@@ -9,14 +21,4 @@ blacklist uvcvideo
 
 # this will disable the webcam when you reboot
 # TO ENABLE AGAIN: remove this line & reboot
-```
-
-## Temporarily Disable/Enable Webcam
-
-```bash
-# temporarily enable the webcam:
-sudo modprobe uvcvideo
-
-# temporarily disable the webcam:
-sudo modprobe -r uvcvideo
 ```

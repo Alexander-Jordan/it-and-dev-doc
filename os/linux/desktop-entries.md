@@ -6,16 +6,17 @@ Since I don't like the thought of keeping applications in my home folder nor bei
 For starters, a menu shortcut is generated through what is called desktop entries.
 These are `.desktop` files that includes some descripable attributes such as name, path to the executable and icon etc.
 
-### Desktop entries are saved in 1 of 3 places:
+## Desktop entries are saved in 1 of 3 places
 
 1. **~/.local/share/applications** - user specific apps
 2. **/usr/local/share/applications** - third party apps accessable to all users
 3. **/usr/share/applications** - default Linux distro specific apps maintained by apt (don't edit this for most cases)
 
-### Here are some good resources:
-- https://www.cyberciti.biz/howto/how-to-install-and-edit-desktop-files-on-linux-desktop-entries/
-- https://freedesktop.org/wiki/Specifications/desktop-entry-spec/ (click latest)
-- https://freedesktop.org/wiki/Specifications/menu-spec/ (click latest)
+## Resources
+
+- [How to install and edit desktop files on Linux (Desktop entries)](https://www.cyberciti.biz/howto/how-to-install-and-edit-desktop-files-on-linux-desktop-entries/)
+- [Desktop Entry Specification](https://freedesktop.org/wiki/Specifications/desktop-entry-spec/) (click latest)
+- [Desktop Menu Specification](https://freedesktop.org/wiki/Specifications/menu-spec/) (click latest)
 
 ## Example (Krita)
 
@@ -33,7 +34,7 @@ But for this example I know it's a third-party app that I want to be accessable 
 
 Create a directory at `/usr/local/share` (the place for all third-party apps) called `krita`:
 
-```
+```bash
 sudo mkdir /usr/local/share/krita
 ```
 
@@ -42,19 +43,19 @@ Place both the AppImage file and the icon file in that folder.
 Make sure you have the `applications` folder in `/usr/local/share` folder.
 If not, create one and reboot:
 
-```
+```bash
 sudo mkdir /usr/local/share/applications
 ```
 
 Create the desktop entry for Krita inside the `applications` folder:
 
-```
+```bash
 sudo nano /usr/local/share/applications/krita.desktop
 ```
 
 Lastly add the following attributes to that file and save:
 
-```
+```desktop
 [Desktop Entry]
 Type=Application
 Name=krita
@@ -73,14 +74,13 @@ Categories=Graphics;
 - **Icon**: Icon to display in file manager, menus, etc.
 - **Categories**: Categories in which the entry should be shown in a menu.
 
-For more attributes (desktop entry keys) and their descriptions:
-https://specifications.freedesktop.org/desktop-entry-spec/latest/ar01s06.html
+[For more attributes (desktop entry keys) and their descriptions.](https://specifications.freedesktop.org/desktop-entry-spec/latest/ar01s06.html)
 
 ## Other tools
 
 There is a GUI tool called `alacarte` that can be installed via apt:
 
-```
+```bash
 sudo apt install alacarte
 ```
 

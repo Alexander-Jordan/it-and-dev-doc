@@ -8,13 +8,11 @@ This feature, when enabled, automatically install security updates.
 - [Ubuntu documentation](https://help.ubuntu.com/community/AutomaticSecurityUpdates)
 - [StackExchange: How to run unattended-upgrades not daily but every few hours](https://unix.stackexchange.com/questions/178626/how-to-run-unattended-upgrades-not-daily-but-every-few-hours)
 
-# Timers
+## Timers
 
 As it's stated in the [Debian Wiki](https://wiki.debian.org/UnattendedUpgrades):
 
-```
-Because Debian is using systemd, it uses systemd timers to run periodic APT maintenance tasks.
-```
+>Because Debian is using systemd, it uses systemd timers to run periodic APT maintenance tasks.
 
 All `systemd` timers are within the `/lib/systemd/system` folder, and can be grepped by:
 
@@ -23,6 +21,7 @@ ls /lib/systemd/system/ | grep ".timer"
 ```
 
 `systemd` timers can also be listed together with information like when the next or last time it will trigger, and what to activate when triggered, by running:
+
 ```bash
 sudo systemctl list-timers
 ```
@@ -35,7 +34,7 @@ sudo systemctl status <timer>
 sudo systemctl status apt-daily.timer
 ```
 
-## Configure
+### Configure
 
 To modify the timer, and thereby the schedule for certain automated jobs (such as the `apt-daily`/`apt-daily-upgrade`), you need to override the default settings.
 
@@ -54,6 +53,7 @@ sudo systemctl status <config-file>
 ```
 
 As an example, to override the apt-daily default timer, the steps are:
+
 ```bash
 # STEP 1 - EDIT:
 sudo systemctl edit apt-daily.timer
@@ -98,14 +98,14 @@ Use `always` if you want to configure the timer only and don't want to worry abo
 
 [More info at the Ubuntu documentation.](https://help.ubuntu.com/community/AutomaticSecurityUpdates)
 
-# Restarts/Reboots
+## Restarts/Reboots
 
 Unattended upgrades does not restart or reboot the device automatically after it's done. This must be manually enabled by:
 
 1. Setting `Unattended-Upgrade::Automatic-Reboot` to `true` in `/etc/apt/apt.conf.d/50unattended-upgrades`.
 2. Install the `update-notifier-common` package.
 
-## Services & Servers
+### Services & Servers
 
 However, services might be restarted briefly after upgrades, such as Apache services used by servers.
 
