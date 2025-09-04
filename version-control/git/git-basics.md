@@ -203,6 +203,8 @@ git push <remote-name> [-d | --delete] <branch>
 ```bash
 # add the remote repository URL, and save it under a name ('origin' is mostly used)
 git remote add <name> <url>
+# change the remote repository URL
+git remote set-url <remote-name> <url>
 ```
 
 ### `git reset`
